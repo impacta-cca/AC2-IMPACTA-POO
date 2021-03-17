@@ -1,5 +1,6 @@
 package ac02;
 
+import java.util.Locale;
 import java.util.Random;
 
 public class BankAccount {
@@ -25,7 +26,7 @@ public class BankAccount {
         this.accountNumber = lastAccountNumber++;
         this.balance = balance;
         this.senha = makePassword();
-        this.cpmf=0;
+        this.cpmf = 0;
 
     }
 
@@ -77,7 +78,7 @@ public class BankAccount {
         cpmf = 0.0025 * amount;
         double newBalance = balance - amount;
         balance = newBalance;
-        balance-=cpmf;
+        balance -= cpmf;
     }
 
     //2:
@@ -92,35 +93,38 @@ public class BankAccount {
 
     public String toString() {
         return "BankAccount{" + "owner= " + owner + ", accountNumber= " +
-                accountNumber + ", balance= " + balance + " password= "+senha +" CPMF= "+cpmf+'}';
+                accountNumber + ", balance= " + balance + " password= " + senha + " CPMF= " + cpmf + '}';
     }
 
     private static String checkName(String owner) {
 // instruções do método a ser desenvolvido
-        if (owner.matches("[A-ZÀ-Ÿ][A-zÀ-ÿ']+")) {return owner;}
+        if (owner.matches("[A-zÀ-ú]+[\\s]*[A-zÀ-ú]+")) {
+            return owner;
+        }
         System.exit(0);
         return null;
-
     }
 
     private static String makePassword() {
         StringBuilder sen = new StringBuilder();
         Random gerador = new Random();
-        char alpha[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        abc = abc.toLowerCase();
+
 
         for (int i = 0; i < 3; i++) {
-
-             sen.append(alpha[gerador.nextInt(25)]);
+            char letter = abc.charAt(gerador.nextInt(abc.length()));
+            sen.append(letter);
         }
 
-        for (int i=3;i<=7;i++){
-            sen.append( String.valueOf(gerador.nextInt(9)));
+        for (int i = 3; i <= 7; i++) {
+            sen.append(String.valueOf(gerador.nextInt(9)));
 
 
         }
-        String f = sen.toString();
 
-        return f;
+
+        return sen.toString();
 
     }
 }

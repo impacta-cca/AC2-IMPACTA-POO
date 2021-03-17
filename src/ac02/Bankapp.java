@@ -1,7 +1,6 @@
 package ac02;
 
 import java.util.Scanner;
-import ac02.BankAccount.*;
 
 public class Bankapp {
 
@@ -9,12 +8,11 @@ public class Bankapp {
 
     public static void mostrarInfo(BankAccount[] contas) {
         System.out.println("\nContas de todos os clientes:");
-        for (int i=0; i<contas.length; i++) {
+        for (int i = 0; i < contas.length; i++) {
             System.out.println("[" + i + "] " + contas[i].toString());
         }
         System.out.println();
     }
-
 
 
     public static void interacaoSacar(BankAccount[] contas) {
@@ -23,12 +21,11 @@ public class Bankapp {
         while (!clienteValido) {
             mostrarInfo(contas);
             System.out.print("O saque será efetuado na conta de qual cliente? (0 a "
-                    + (contas.length-1) + "): ");
+                    + (contas.length - 1) + "): ");
             indiceConta = entrada.nextInt();
-            if (indiceConta >=0 && indiceConta < contas.length) {
+            if (indiceConta >= 0 && indiceConta < contas.length) {
                 clienteValido = true;
-            }
-            else {
+            } else {
                 System.out.println("Índice de cliente inválido!");
             }
         }
@@ -44,18 +41,17 @@ public class Bankapp {
 
     //1:
 
-    public static void interacaoDepositar (BankAccount[] contas) {
+    public static void interacaoDepositar(BankAccount[] contas) {
         boolean clienteValido = false;
         int indiceConta = -1;
         while (!clienteValido) {
             mostrarInfo(contas);
             System.out.print("O deposito será efetuado na conta de qual cliente? (0 a "
-                    + (contas.length-1) + "): ");
+                    + (contas.length - 1) + "): ");
             indiceConta = entrada.nextInt();
-            if (indiceConta >=0 && indiceConta < contas.length) {
+            if (indiceConta >= 0 && indiceConta < contas.length) {
                 clienteValido = true;
-            }
-            else {
+            } else {
                 System.out.println("Índice de cliente inválido!");
             }
         }
@@ -67,23 +63,22 @@ public class Bankapp {
     }
 
     //3:
-    public static void  interacaoTransferir(BankAccount[] contas){
-        Boolean clienteValido = false;
+    public static void interacaoTransferir(BankAccount[] contas) {
+        boolean clienteValido = false;
         int indiceConta = -1;
         int target = -1;
         while (!clienteValido) {
             mostrarInfo(contas);
             System.out.print("A transferencia será feita a partir de qual conta? (0 a "
-                    + (contas.length-1) + "): ");
+                    + (contas.length - 1) + "): ");
             indiceConta = entrada.nextInt();
 
             System.out.print("A transferencia será feita  para qual conta? (0 a "
-                    + (contas.length-1) + "): ");
+                    + (contas.length - 1) + "): ");
             target = entrada.nextInt();
-            if ((indiceConta >=0 && indiceConta < contas.length) && (target >=0 && target< contas.length) && (target!=indiceConta) ) {
+            if ((indiceConta >= 0 && indiceConta < contas.length) && (target >= 0 && target < contas.length) && (target != indiceConta)) {
                 clienteValido = true;
-            }
-            else {
+            } else {
                 System.out.println("Índice de algum dos clientes inválido!");
             }
         }
@@ -93,27 +88,6 @@ public class Bankapp {
         contas[indiceConta].transfer(valortransf, contas[target]);
         System.out.println("transferencia finalizada.\n");
     }
-
-
-/*
-    public static void interactCadastrarCorrentista(BankAccount[] contas){
-        String nome = "";
-        double saldo = 0;
-        do {
-            System.out.println("Digite o nome do novo usuario");
-            nome = entrada.nextLine();
-        }while (checkName(nome)=="Não valido");
-
-
-        BankAccount novo = new BankAccount(nome,saldo);
-    }
-
- */
-
-
-
-
-
 
 
     public static void main(String[] args) {
@@ -127,7 +101,7 @@ public class Bankapp {
         entrada = new Scanner(System.in);
         boolean sair = false;
 
-        while(!sair) {
+        while (!sair) {
             System.out.println("Escolha uma operação:");
             System.out.println("(1) mostrar informações de todas as contas");
             System.out.println("(2) sacar");
@@ -138,13 +112,24 @@ public class Bankapp {
 
             int escolha = entrada.nextInt();
             System.out.println();
-            switch(escolha) {
-                case 1: mostrarInfo(contas); break;
-                case 2: interacaoSacar(contas); break;
-                case 3: interacaoDepositar(contas); break;
-                case 4: interacaoTransferir(contas); break;
-                case 0: sair = true; break;
-                default: System.out.println("Opção inválida!");
+            switch (escolha) {
+                case 1:
+                    mostrarInfo(contas);
+                    break;
+                case 2:
+                    interacaoSacar(contas);
+                    break;
+                case 3:
+                    interacaoDepositar(contas);
+                    break;
+                case 4:
+                    interacaoTransferir(contas);
+                    break;
+                case 0:
+                    sair = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
             }
             System.out.println();
         }

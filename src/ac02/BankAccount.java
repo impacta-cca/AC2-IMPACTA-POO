@@ -1,6 +1,5 @@
 package ac02;
 
-import java.util.Locale;
 import java.util.Random;
 
 public class BankAccount {
@@ -75,6 +74,8 @@ public class BankAccount {
 
     void withDraw(double amount) {
         //Evitar efeitos colaterais
+
+        // 6:
         cpmf = 0.0025 * amount;
         double newBalance = balance - amount;
         balance = newBalance;
@@ -90,14 +91,17 @@ public class BankAccount {
 
     }
 
-
     public String toString() {
-        return "BankAccount{" + "owner= " + owner + ", accountNumber= " +
-                accountNumber + ", balance= " + balance + " password= " + senha + " CPMF= " + cpmf + '}';
+        return "BankAccount[" + "Owner= " + owner +
+                ",\tAccountNumber= " + accountNumber +
+                ",\tBalance= " + balance + "R$"+
+                ",\tPassword= " + senha +
+                ",\tCPMF= " + cpmf + ']';
     }
 
+    //4:
     private static String checkName(String owner) {
-// instruções do método a ser desenvolvido
+    // instruções do método a ser desenvolvido
         if (owner.matches("[A-zÀ-ú]+[\\s]*[A-zÀ-ú]+")) {
             return owner;
         }
@@ -105,25 +109,20 @@ public class BankAccount {
         return null;
     }
 
+    //5:
     private static String makePassword() {
         StringBuilder sen = new StringBuilder();
         Random gerador = new Random();
         String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         abc = abc.toLowerCase();
 
-
         for (int i = 0; i < 3; i++) {
             char letter = abc.charAt(gerador.nextInt(abc.length()));
             sen.append(letter);
         }
-
         for (int i = 3; i <= 7; i++) {
             sen.append(String.valueOf(gerador.nextInt(9)));
-
-
         }
-
-
         return sen.toString();
 
     }

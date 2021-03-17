@@ -37,10 +37,9 @@ public class Bankapp {
     }
 
 
-    // AC02 - IMPACTA - POO - 16/03/21
+    // AC02 - IMPACTA - POO
 
     //1:
-
     public static void interacaoDepositar(BankAccount[] contas) {
         boolean clienteValido = false;
         int indiceConta = -1;
@@ -103,11 +102,11 @@ public class Bankapp {
 
         while (!sair) {
             System.out.println("Escolha uma operação:");
-            System.out.println("(1) mostrar informações de todas as contas");
-            System.out.println("(2) sacar");
-            System.out.println("(3) depositar");
+            System.out.println("(1) Mostrar informações de todas as contas");
+            System.out.println("(2) Sacar");
+            System.out.println("(3) Depositar");
             System.out.println("(4) Transferir");
-            System.out.println("(0) sair");
+            System.out.println("(0) Sair");
             System.out.print("Opção escolhida: ");
 
             int escolha = entrada.nextInt();
